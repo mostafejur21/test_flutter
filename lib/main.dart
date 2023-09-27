@@ -1,120 +1,120 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Ostad',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
+    return const MaterialApp(
+      home: HomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _currentIndex = 0;
-
-  List<Widget> _pages = [
-    PageWidget(1, Colors.red),
-    PageWidget(2, Colors.green),
-    PageWidget(3, Colors.blue),
-  ];
-
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Test Apps'),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text('Home'),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 0;
-                  Navigator.pop(context);
-                });
-              },
-            ),
-            ListTile(
-              title: Text('Work'),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 1;
-                  Navigator.pop(context);
-                });
-              },
-            ),
-            ListTile(
-              title: Text('School'),
-              onTap: () {
-                setState(() {
-                  _currentIndex = 2;
-                  Navigator.pop(context);
-                });
-              },
-            ),
-          ],
-        ),
-      ),
-      body: _pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Work',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Office',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class PageWidget extends StatelessWidget {
-  final int pageNumber;
-  final Color color;
-
-  PageWidget(this.pageNumber, this.color);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: color,
-        child: Icon(Icons.add),
-      ),
       body: Center(
-        child: Text(
-          'Page $pageNumber',
-          style: TextStyle(fontSize: 24),
+        child: Container(
+          height: 370,
+          width: 200,
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.all(Radius.circular(3),),
+          ),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.network(
+                  'https://smuct.ac.bd/wp-content/uploads/2020/10/SMUCT-Logo-1-Converted.png',
+                  scale: 5,
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                height: 100,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.blueAccent,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      RotatedBox(
+                        quarterTurns: 3,
+                        child: Text(
+                          "STUDENT",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w700, letterSpacing: 3),
+                        ),
+                      ),
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundColor: Colors.amber,
+                        child: CircleAvatar(
+
+                          radius: 45,
+
+                          foregroundImage: NetworkImage('https://media.licdn.com/dms/image/D4D03AQHVbWMQXuE1KQ/profile-displayphoto-shrink_200_200/0/1690303199734?e=1701302400&v=beta&t=k91tXTfg6O7VhB7nSymLnBUODnJ_YWZjJWIB50C2ZL8'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Mostafejur Rahman"),
+                    Text(
+                      "ID: 201071030",
+                      style: TextStyle(color: Colors.blueAccent),
+                    ),
+                    Text(
+                      "REG.NO.: 200007397",
+                      style: TextStyle(color: Colors.blueAccent),
+                    ),
+                    Text("Dept Of Computer Science & Engineering (B.Sc. CSE)"),
+                    Text(
+                      "Blood Group: O+",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(
+                color: Colors.amber,
+                thickness: 3,
+              ),
+              const Text(
+                "Registrar",
+                style: TextStyle(color: Colors.blueAccent),
+              ),
+            ],
+          ),
         ),
       ),
     );
